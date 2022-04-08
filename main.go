@@ -65,7 +65,7 @@ func main() {
 	if err := sendMail(from, to, subject, user, password, host, port, string(msg)); err != nil {
 		exitWithErr(err)
 	}
-	fmt.Printf("Successfully sent initial mail to %s\n", to)
+	fmt.Fprintf(os.Stdout, "Successfully sent initial mail to %s\n", to)
 	c := 2
 
 	t := time.NewTicker(1 * time.Hour)
@@ -75,7 +75,7 @@ func main() {
 			if err := sendMail(from, to, subject, user, password, host, port, string(msg)); err != nil {
 				exitWithErr(err)
 			}
-			fmt.Printf("Successfully sent mail %d to %s\n", c, to)
+			fmt.Fprintf(os.Stdout, "Successfully sent mail %d to %s\n", c, to)
 			c++
 		}
 	}
